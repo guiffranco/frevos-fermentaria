@@ -17,6 +17,8 @@ class App extends Component {
     this.state = {
       dadosCalculadora: [],
     };
+    this.removeData = this.removeData.bind(this);
+
     if (!firebase.apps.length) {
         this.app = firebase.initializeApp(DB_CONFIG);
         this.database = this.app.database().ref().child('dadosCalculadora');
@@ -24,8 +26,12 @@ class App extends Component {
   }
 
   myCallback = (dataFromChild) => {
-        this.database.push().set({ dataFromChild: dataFromChild });
-    }
+    this.database.push().set({ dataFromChild: dataFromChild });
+  }
+
+  removeData = (dataId) => {
+    this.database.child(dataId).remove();
+  }
 
   componentWillMount() {
     const previousData = this.state.dadosCalculadora;
@@ -39,6 +45,14 @@ class App extends Component {
     this.setState({
       dadosCalculadora: previousData
     })
+
+    this.database.on('child_removed', snap=> {
+      for (var i = 0; i < previousData.length; i++) {
+        if(previousData[i].id === snap.key){
+          previousData.splice(i, 1);
+        }
+      }
+    })
   }
 
   render() {
@@ -50,7 +64,7 @@ class App extends Component {
             <Route exact path={routes.LANDING} component={Home}/>
             <Route path={routes.HOME} component={Home}/>
             <Route path={routes.CALCULADORA} render={()=><Calculadora callbackFromParent={this.myCallback}/>}/>
-            <Route path={routes.RECEITAS} render={()=><Receitas dados={this.state.dadosCalculadora}/>}/>
+            <Route path={routes.RECEITAS} render={()=><Receitas dados={this.state.dadosCalculadora} removeData={this.removeData}/>}/>
           </div>
         </Router>
         <Footer />

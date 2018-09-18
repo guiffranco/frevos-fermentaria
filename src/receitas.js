@@ -2,6 +2,18 @@ import React, { Component } from 'react';
 import SimpleExpansionPanel from './simpleExpansionPanel.js'
 
 class Receitas extends Component {
+  getIDCallback = (id) => {
+    // Forcing a rerender with setState
+    this.setState({
+      state: this.state
+    });
+    this.props.removeData(id)
+  }
+
+  componentDidUpdate() {
+    console.log("Oi");
+  }
+
   render() {
     return (
       <div>
@@ -21,6 +33,7 @@ class Receitas extends Component {
                 melAdocar={dados.dataFromChild.melAdocar}
                 melTotal={dados.dataFromChild.melTotal}
                 qtdGarrafas={dados.dataFromChild.qtdGarrafas}
+                getID={this.getIDCallback}
               />
             )
           })

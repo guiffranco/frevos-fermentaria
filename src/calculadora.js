@@ -98,6 +98,10 @@ class Calculadora extends Component {
     this.setState({ open: false });
   };
 
+  componentWillMount() {
+    console.log("calcs: ", this.props.callbackFromParent);
+  }
+
 
   render () {
     return(
