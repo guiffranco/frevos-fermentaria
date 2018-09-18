@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import SimpleExpansionPanel from './simpleExpansionPanel.js'
 
 class Receitas extends Component {
+  //  Forcing a rerender
+  componentWillReceiveProps() {
+    this.setState({
+      state: this.state
+    });
+  }
+
   getIDCallback = (id) => {
     // Forcing a rerender with setState
     this.setState({
       state: this.state
     });
     this.props.removeData(id)
-  }
-
-  componentDidUpdate() {
-    console.log("Oi");
   }
 
   render() {
