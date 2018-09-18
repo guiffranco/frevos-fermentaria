@@ -39,11 +39,15 @@
   padding-bottom: 1em;
 }
 
-
 .footer {
   font-size: 0.7em;
   padding: 1em;
   margin-top: 1em;
+}
+
+.panel {
+  justify-content: space-between;
+  display: flex;
 }
 
 @keyframes App-logo-spin {

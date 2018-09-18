@@ -5,6 +5,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Delete from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
 import './App.css';
 
@@ -26,21 +27,22 @@ class SimpleExpansionPanel extends Component {
             <Typography>{this.props.titulo}</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails className="panel">
-            <Typography>
-              <b>ID: </b>{this.props.id} <br/>
-              <b>Descrição:</b>  {this.props.descricao} <br/>
+            <Typography align="left">
+              <b>Descrição:</b>  {this.props.descricao} <br/><br/>
               <b>Densidade Final:</b> {this.props.densidadeFinal} <br/>
-              <b>ABV:</b> {this.props.abv} <br/>
-              <b>Volume Inicial:</b> {this.props.volumeInicial} <br/>
-              <b>Mel Inicial:</b> {this.props.melInicial} <br/>
-              <b>Mel Adocar:</b> {this.props.melAdocar} <br/>
-              <b>Mel Total:</b> {this.props.melTotal} <br/>
-              <b>Volume Final:</b> {this.props.volumeFinal}  <br/>
-              <b>Quantidade de Garrafas:</b> {this.props.qtdGarrafas} <br/>
+              <b>ABV:</b> {this.props.abv}%<br/>
+              <b>Volume Inicial:</b> {this.props.volumeInicial.toFixed(2)} L <br/>
+              <b>Mel Inicial:</b> {this.props.melInicial.toFixed(2)} Kg <br/>
+              <b>Mel Adocar:</b> {this.props.melAdocar.toFixed(2)} Kg <br/>
+              <b>Mel Total:</b> {this.props.melTotal.toFixed(2)} Kg <br/>
+              <b>Volume Final:</b> {this.props.volumeFinal.toFixed(2)} L <br/>
+              <b>Quantidade de Garrafas:</b> {this.props.qtdGarrafas.toFixed(2)} de 750mL<br/>
             </Typography>
-            <Button color="primary" onClick={this.handleRemoveData}>
-              Apagar Receita
-            </Button>
+            <Typography align="right">
+              <Button color="primary" onClick={this.handleRemoveData}>
+                <Delete/>
+              </Button>
+            </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
       </div>
