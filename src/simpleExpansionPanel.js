@@ -10,6 +10,10 @@ import Button from '@material-ui/core/Button';
 import './App.css';
 
 class SimpleExpansionPanel extends Component {
+  // FIX:
+  // Quando clicar para apagar a receita, fechar o Panel, porque ele fica aberto:
+  // https://github.com/mui-org/material-ui/issues/9427
+
   constructor(props) {
     super(props);
     this.dataFromChild = props.dataFromChild;
